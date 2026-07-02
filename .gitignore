@@ -1,0 +1,49 @@
+# -------------------------
+# Python
+# -------------------------
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.env
+
+# -------------------------
+# FastAPI / uploads
+# -------------------------
+uploads/
+*.sqlite3
+
+# -------------------------
+# React / Node
+# -------------------------
+frontend/node_modules/
+node_modules/
+dist/
+.vite/
+
+# -------------------------
+# Jupyter / notebooks
+# -------------------------
+.ipynb_checkpoints/
+
+# -------------------------
+# OS / Editor
+# -------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Large / temporary files
+# -------------------------
+*.zip
+*.rar
+*.7z
+
+# -------------------------
+# Optional result folders
+# -------------------------
+results/

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mood Weather Cloud</title>
+
+<style>
+
+body{
+font-family:Arial;
+text-align:center;
+padding:50px;
+background:linear-gradient(to right,#74ebd5,#ACB6E5);
+}
+
+.container{
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+width:500px;
+
+margin:auto;
+
+box-shadow:0px 0px 20px gray;
+}
+
+textarea{
+
+width:90%;
+
+height:100px;
+
+padding:10px;
+
+font-size:16px;
+}
+
+button{
+
+padding:12px 25px;
+
+font-size:18px;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+}
+
+#result{
+
+margin-top:20px;
+
+font-size:22px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌦 Mood Weather Cloud</h1>
+
+<p>
+Describe your mood:
+</p>
+
+<textarea
+id="text"
+placeholder="I have assignments, exams and no sleep..."
+></textarea>
+
+<br><br>
+
+<button onclick="analyze()">
+
+Analyze Mood
+
+</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+async function analyze(){
+
+let text=document.getElementById(
+"text"
+).value
+
+let response=await fetch(
+
+"https://3x74sapqdh.execute-api.eu-north-1.amazonaws.com/prod/analyze",
+
+{
+method:"POST",
+
+headers:{
+'Content-Type':
+'application/json'
+},
+
+body:JSON.stringify({
+
+text:text
+
+})
+})
+
+let data=
+await response.json()
+
+document.getElementById(
+"result"
+).innerHTML=
+
+"<h2>"+data.weather+"</h2>"+
+
+"Stress Level: "+
+
+data.score+
+
+"%<br><br>"+
+
+data.advice
+
+}
+
+</script>
+
+</body>
+</html>

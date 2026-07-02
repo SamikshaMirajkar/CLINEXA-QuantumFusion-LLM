@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>QuantumFusion-LLM</title>
+
+<style>
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+font-family:Arial;
+color:white;
+padding:30px;
+}
+
+.container{
+
+max-width:1000px;
+margin:auto;
+padding:30px;
+
+background:rgba(255,255,255,.05);
+
+border-radius:25px;
+
+backdrop-filter:blur(20px);
+
+box-shadow:0 0 30px rgba(0,0,0,.4);
+
+}
+
+h1{
+text-align:center;
+font-size:45px;
+color:#38bdf8;
+}
+
+.subtitle{
+text-align:center;
+color:#cbd5e1;
+margin-bottom:30px;
+}
+
+.grid{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+
+}
+
+.card{
+
+background:#111827;
+
+padding:20px;
+
+border-radius:20px;
+
+}
+
+input,textarea{
+
+width:100%;
+
+padding:14px;
+
+border-radius:10px;
+
+border:none;
+
+margin-top:10px;
+
+background:#1e293b;
+
+color:white;
+
+}
+
+button{
+
+width:100%;
+
+padding:16px;
+
+margin-top:20px;
+
+border:none;
+
+border-radius:12px;
+
+background:#38bdf8;
+
+font-size:18px;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+.result{
+
+margin-top:30px;
+
+padding:20px;
+
+background:#111827;
+
+border-radius:20px;
+
+}
+
+.score{
+
+font-size:40px;
+
+color:#22c55e;
+
+}
+
+img{
+
+width:100%;
+
+border-radius:15px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>QuantumFusion-LLM</h1>
+
+<div class="subtitle">
+
+Quantum Enhanced Multimodal Clinical Decision System
+
+</div>
+
+<form method="POST" enctype="multipart/form-data">
+
+<div class="grid">
+
+<div class="card">
+
+<h3>🩻 Chest X-Ray</h3>
+
+<input type="file" name="xray">
+
+</div>
+
+<div class="card">
+
+<h3>❤️ ECG Values</h3>
+
+<textarea
+name="ecg"
+placeholder="Paste ECG values here"></textarea>
+
+</div>
+
+</div>
+
+<div class="card" style="margin-top:20px">
+
+<h3>📝 Symptoms</h3>
+
+<textarea
+name="symptoms"
+placeholder="Fever, cough, chest pain..."></textarea>
+
+</div>
+
+<button>
+
+Analyze Patient
+
+</button>
+
+</form>
+
+
+{% if result %}
+
+<div class="result">
+
+<h2>Clinical Analysis</h2>
+
+<div class="score">
+
+{{result.fusion_score}}
+
+</div>
+
+<p>
+
+<b>Disease:</b>
+
+{{result.disease}}
+
+</p>
+
+<p>
+
+<b>Recommendation:</b>
+
+{{result.recommendation}}
+
+</p>
+
+<p>
+
+<b>Guidance:</b>
+
+{{result.dosage}}
+
+</p>
+
+{% if result.heatmap %}
+
+<h3>Heatmap</h3>
+
+<img src="/{{result.heatmap}}">
+
+{% endif %}
+
+{% if result.report %}
+
+<br><br>
+
+<a href="/{{result.report}}">
+
+Download Report
+
+</a>
+
+{% endif %}
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
